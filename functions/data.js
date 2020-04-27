@@ -66,8 +66,9 @@ const allQuestions = [
           `Hope this helps.`,
         ],
         featured: true,
-        author: allUsers.yhlens,
+        author: allUsers.wilson,
         time: `Mon Apr 16 2020 14:50:51 GMT+0800 (Singapore Standard Time)`,
+        likes: 9,
       },
       {
         content: [`Non featured answer 1.`],
@@ -77,7 +78,6 @@ const allQuestions = [
       },
     ],
     topics: [allTopics.covid19, allTopics.payments, allTopics.roboAdvisors],
-    likes: 9,
   },
   {
     question: `Is it really impossible to make money through trading over the long run?`,
@@ -93,6 +93,7 @@ const allQuestions = [
         featured: true,
         author: allUsers.elijahLee,
         time: `Mon Apr 10 2020 14:50:51 GMT+0800 (Singapore Standard Time)`,
+        likes: 6,
       },
       {
         content: [`Non featured answer 1.`],
@@ -108,7 +109,6 @@ const allQuestions = [
       },
     ],
     topics: [allTopics.covid19, allTopics.roboAdvisors],
-    likes: 6,
   },
   {
     question: `Are there any administrative fees (i.e. management fees) or additional taxes that are applicable to REITs that would impact the distribution rate?`,
@@ -120,6 +120,7 @@ const allQuestions = [
         featured: true,
         author: allUsers.lokYangTeng,
         time: `Mon Apr 27 2020 14:50:51 GMT+0800 (Singapore Standard Time)`,
+        likes: 120,
       },
       {
         content: [`Non featured answer 1.`],
@@ -130,7 +131,6 @@ const allQuestions = [
       allTopics.seedlyTvS204,
       allTopics.fireMovement,
     ],
-    likes: 120,
   },
   {
     question: `Hi! Can someone help me calculate how much transactions fees or total fees I am paying for Pulsar if I am throwing in 10k a year?`,
@@ -144,22 +144,10 @@ const allQuestions = [
         featured: true,
         author: allUsers.lokYangTeng,
         time: `Mon Apr 27 2020 14:50:51 GMT+0800 (Singapore Standard Time)`,
-      },
-      {
-        content: [`Non featured answer 1.`],
-      },
-      {
-        content: [`Non featured answer 1.`],
-      },
-      {
-        content: [`Non featured answer 1.`],
-      },
-      {
-        content: [`Non featured answer 1.`],
+        likes: 3,
       },
     ],
     topics: [allTopics.investments],
-    likes: 3,
   },
   {
     question: `Hi! Can someone help me calculate how much transactions fees or total fees I am paying for Pulsar if I am throwing in 10k a year?`,
@@ -173,6 +161,7 @@ const allQuestions = [
         featured: true,
         author: allUsers.cedricJamieSoh,
         time: `Mon Apr 27 2020 14:50:51 GMT+0800 (Singapore Standard Time)`,
+        likes: 8,
       },
       {
         content: [`Non featured answer 1.`],
@@ -182,7 +171,6 @@ const allQuestions = [
       },
     ],
     topics: [allTopics.covid19, allTopics.insurance],
-    likes: 8,
   },
 ];
 

@@ -28,6 +28,7 @@ const SidebarSection = styled.div`
   }
 
   h2 {
+    margin-top: 10px;
     font-weight: 700;
     font-size: 1rem;
     padding: 12px 10px;

@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCommentAlt, faThumbsUp } from '@fortawesome/free-regular-svg-icons';
-import { faShareAlt } from '@fortawesome/free-solid-svg-icons';
+import FeaturedAnswer from './FeaturedAnswer';
+import { NavLink } from 'react-router-dom';
 
 const QuestionSection = styled.div`
   background: ${(props) => props.theme.colors.white};
@@ -65,100 +64,65 @@ const QuestionSection = styled.div`
       }
     }
   }
-
-  .answer {
-    margin-top: 15px;
-    color: ${(props) => props.theme.colors.dark};
-    padding-right: 20px;
-    font-size: 0.95rem;
-    line-height: 1.8;
-    span {
-      color: ${(props) => props.theme.colors.primary};
-      cursor: pointer;
-    }
-  }
-
-  .footer {
-    margin-top: 15px;
-    display: flex;
-    justify-content: space-between;
-    padding-right: 10px;
-
-    .num-answers {
-      color: ${(props) => props.theme.colors.grey};
-      font-size: 0.9rem;
-      cursor: pointer;
-      svg {
-        margin-right: 7px;
-      }
-    }
-
-    .likes {
-      color: ${(props) => props.theme.colors.dark};
-      svg {
-        cursor: pointer;
-        color: ${(props) => props.theme.colors.primary};
-      }
-      span {
-        margin: 0px 10px;
-        font-size: 0.9rem;
-        font-weight: 600;
-      }
-    }
-  }
 `;
 
-const AuthorProfile = ({ author }) => (
-  <div className="author-profile">
-    <img
-      size="36"
-      src="https://graph.facebook.com/2540542656000956/picture?type=square"
-      alt="Daniel Lim"
-    ></img>
-    <div className="info">
-      <div className="name">Daniel Lim</div>
-      <div className="about">
-        Level 3 Wonderkid <span>Answered 13 day ago</span>
+const AuthorProfile = ({ author, ansTime }) => {
+  if (!author) return null;
+  let timeStr = null;
+
+  if (ansTime) {
+    const diff = new Date().getTime() - new Date(ansTime).getTime();
+    const hrs = Math.round(diff / (1000 * 3600));
+
+    if (hrs < 24) {
+      timeStr = `${hrs}h`;
+    } else {
+      timeStr = `${Math.round(hrs / 24)}d`;
+    }
+  }
+
+  return (
+    <div className="author-profile">
+      <img src={author.profile} alt={author.name} />
+      <div className="info">
+        <div className="name">{author.name}</div>
+        <div className="about">
+          {author.level}
+          {timeStr && <span>Answered {timeStr} ago</span>}
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 const Question = ({ question }) => {
   if (!question) return null;
 
   const { topics, question: qs, answers } = question;
+  // Find featured answer
+  const featuredAnswer = answers.find((ans) => ans.featured);
+
   return (
     <QuestionSection>
       {topics && (
         <div className="tags">
           {topics.map((topic, i) => (
-            <div key={i} className="tag">
+            <NavLink to={`/topic/${topic}`} className="tag" key={i}>
               {topic}
-            </div>
+            </NavLink>
           ))}
         </div>
       )}
       <h2>{qs}</h2>
-      <AuthorProfile />
-      <div className="answer">
-        Investment is a craft. Not science. Not art. There are no absolutes. No
-        one is more talented than the other from birth. It is through practice
-        and constant valuation that you can grow your craft. Imagine it as
-        cooking. You can read as many cook ...{' '}
-        <span className="more">(more)</span>
-      </div>
-      <div className="footer">
-        <div className="num-answers">
-          <FontAwesomeIcon icon={faCommentAlt} />
-          {answers.length} answers
-        </div>
-        <div className="likes">
-          <FontAwesomeIcon icon={faThumbsUp} />
-          <span>8</span>
-          <FontAwesomeIcon icon={faShareAlt} />
-        </div>
-      </div>
+      {featuredAnswer && (
+        <>
+          <AuthorProfile
+            author={featuredAnswer.author}
+            ansTime={featuredAnswer.time}
+          />
+          <FeaturedAnswer answer={featuredAnswer} numAnswers={answers.length} />
+        </>
+      )}
     </QuestionSection>
   );
 };
