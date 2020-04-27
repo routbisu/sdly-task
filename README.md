@@ -1,8 +1,8 @@
 ## Frontend Challenge Task
 
-[Demo Link][1]
-[1]: https://sdly-task.web.app/ "Demo link"
 Click above to see a demo application hosted on firebase.
+[Demo Link](https://sdly-task.web.app/)
+https://sdly-task.web.app/
 
 ### Steps to run
 
