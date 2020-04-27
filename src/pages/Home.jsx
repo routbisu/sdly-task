@@ -13,10 +13,11 @@ const Home = () => {
   const questions = useSelector((state) => state.questionState.questions);
   return (
     <div>
-      {questions &&
-        questions.map((question, i) => (
-          <Question question={question} key={i} />
-        ))}
+      {questions && questions.length ? (
+        questions.map((question, i) => <Question question={question} key={i} />)
+      ) : (
+        <div className="no-questions">Loading questions</div>
+      )}
     </div>
   );
 };

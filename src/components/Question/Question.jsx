@@ -108,31 +108,39 @@ const QuestionSection = styled.div`
   }
 `;
 
-const Question = () => {
+const AuthorProfile = ({ author }) => (
+  <div className="author-profile">
+    <img
+      size="36"
+      src="https://graph.facebook.com/2540542656000956/picture?type=square"
+      alt="Daniel Lim"
+    ></img>
+    <div className="info">
+      <div className="name">Daniel Lim</div>
+      <div className="about">
+        Level 3 Wonderkid <span>Answered 13 day ago</span>
+      </div>
+    </div>
+  </div>
+);
+
+const Question = ({ question }) => {
+  if (!question) return null;
+
+  const { topics, question: qs, answers } = question;
   return (
     <QuestionSection>
-      <div className="tags">
-        <div className="tag">LifeStyle</div>
-        <div className="tag">MeLion</div>
-        <div className="tag">KrisFlyer</div>
-      </div>
-      <h2>
-        Hi i’m a 20y/o student. i have studied investing but i’ve always
-        hesitated. how do you find the courage to begin?
-      </h2>
-      <div className="author-profile">
-        <img
-          size="36"
-          src="https://graph.facebook.com/2540542656000956/picture?type=square"
-          alt="Daniel Lim"
-        ></img>
-        <div className="info">
-          <div className="name">Daniel Lim</div>
-          <div className="about">
-            Level 3 Wonderkid <span>Answered 13 day ago</span>
-          </div>
+      {topics && (
+        <div className="tags">
+          {topics.map((topic, i) => (
+            <div key={i} className="tag">
+              {topic}
+            </div>
+          ))}
         </div>
-      </div>
+      )}
+      <h2>{qs}</h2>
+      <AuthorProfile />
       <div className="answer">
         Investment is a craft. Not science. Not art. There are no absolutes. No
         one is more talented than the other from birth. It is through practice
@@ -143,7 +151,7 @@ const Question = () => {
       <div className="footer">
         <div className="num-answers">
           <FontAwesomeIcon icon={faCommentAlt} />
-          132 answers
+          {answers.length} answers
         </div>
         <div className="likes">
           <FontAwesomeIcon icon={faThumbsUp} />

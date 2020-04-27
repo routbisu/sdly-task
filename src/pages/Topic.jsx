@@ -18,10 +18,11 @@ const Topic = () => {
 
   return (
     <div>
-      {questions &&
-        questions.map((question, i) => (
-          <Question question={question} key={i} />
-        ))}
+      {questions && questions.length ? (
+        questions.map((question, i) => <Question question={question} key={i} />)
+      ) : (
+        <div className="no-questions">No questions found</div>
+      )}
     </div>
   );
 };
