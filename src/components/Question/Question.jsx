@@ -8,6 +8,7 @@ const QuestionSection = styled.div`
   background: ${(props) => props.theme.colors.white};
   border-radius: 4px;
   padding: 16px;
+  margin-bottom: 15px;
 
   .tags {
     .tag {
@@ -73,6 +74,7 @@ const QuestionSection = styled.div`
     line-height: 1.8;
     span {
       color: ${(props) => props.theme.colors.primary};
+      cursor: pointer;
     }
   }
 
@@ -85,6 +87,7 @@ const QuestionSection = styled.div`
     .num-answers {
       color: ${(props) => props.theme.colors.grey};
       font-size: 0.9rem;
+      cursor: pointer;
       svg {
         margin-right: 7px;
       }
