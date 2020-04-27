@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
@@ -34,26 +35,29 @@ const SidebarSection = styled.div`
 `;
 
 const Sidebar = () => {
+  const featuredTopics = useSelector(
+    (state) => state.questionState.featuredTopics
+  );
+
   return (
     <SidebarSection>
       <ul>
         <li>
-          <NavLink to="/" activeClassName="active">
+          <NavLink to="/" activeClassName="active" exact>
             All Questions
           </NavLink>
         </li>
       </ul>
       <h2>Featured Topics</h2>
       <ul>
-        <li>
-          <NavLink to="/gora">COVID-19</NavLink>
-        </li>
-        <li>
-          <NavLink to="/gora">Payments</NavLink>
-        </li>
-        <li>
-          <NavLink to="/gora">Robo-advisors</NavLink>
-        </li>
+        {featuredTopics &&
+          featuredTopics.map((topic, i) => (
+            <li key={i}>
+              <NavLink to={`/topic/${topic}`} exact>
+                {topic}
+              </NavLink>
+            </li>
+          ))}
       </ul>
     </SidebarSection>
   );
