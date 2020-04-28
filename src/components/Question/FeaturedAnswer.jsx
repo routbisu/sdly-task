@@ -18,6 +18,7 @@ const AnswerSection = styled.div`
   .answer-text {
     p {
       margin-bottom: 10px;
+      font-size: 1rem;
     }
 
     &.covered {
